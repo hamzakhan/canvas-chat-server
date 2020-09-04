@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+    canvas-chat-server:
+        container_name: server
+        build: ./
+        command: npm start
+        environment:
+            MONGO_URI: mongodb://mongo:27017/mongo-test
+        ports:
+            - "4000:4000"
+        volumes:
+            - ./:/usr/src/canvas-chat-server
+            - /usr/src/canvas-chat-server/node_modules
+    mongo:
+        container_name: mongodb
+        image: mongo
+        ports: 
+            - "27017:27017"
